@@ -14,6 +14,8 @@ import (
 
 func main() {
 
+	exCtc := C.libusb_init(nil)
+	fmt.Println(exCtc)
 	ctx := gousb.NewContext()
 	// A Context manages all resources necessary for communicating with USB devices.
 	//Through the Context users can iterate over available USB devices.
@@ -60,3 +62,13 @@ func main() {
 
 	fmt.Println("ZPL command sent successfully.")
 }
+
+/*
+	What we are doing here is to tell go that he libusb library is here, then
+	when we compile in the binary file we are including all this packages inside
+	the executable, the binary run and find the library, however in other computer
+	it is not working because by default it is looking the library in the device
+  we need to run:
+  export DYLD_LIBRARY_PATH=/Users/yiroyi/Desktop/goStaticUsb/lib
+	In this way we are telling to find the library DYLD_Library in the above path
+*/
