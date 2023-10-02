@@ -3,7 +3,6 @@ package main
 // #cgo CFLAGS:-I./libusb-1.0
 // #cgo LDFLAGS: -L./lib -lusb-1.0
 // #include "./libusb-1.0/libusb.h"
-import "C"
 
 import (
 	"fmt"
@@ -13,9 +12,6 @@ import (
 )
 
 func main() {
-
-	exCtc := C.libusb_init(nil)
-	fmt.Println(exCtc)
 	ctx := gousb.NewContext()
 	// A Context manages all resources necessary for communicating with USB devices.
 	//Through the Context users can iterate over available USB devices.
